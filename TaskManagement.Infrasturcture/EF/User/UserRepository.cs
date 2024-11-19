@@ -81,6 +81,7 @@ public class UserRepository : IUserRepository
     {
         var user = await dbContex.Users
             .Where(x => x.UserName == userName && password == x.Password)
+            .Include(x => x.Roles)
             .FirstOrDefaultAsync();
         if (user != null)
         {
