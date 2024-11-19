@@ -2,43 +2,99 @@
 using TaskManagement.Infrasturcture.EF.Project;
 using TaskManagement.Domain.Shared;
 using TaskManagement.Domain.Project;
+using AutoMapper;
+using TaskManagement.Domain.User;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper.QueryableExtensions;
 
 namespace TaskManagement.Infrasturcture.EF.Project;
 
 public class ProjectRepository : IProjectRepository
 {
-    public ValueTask<OperationResult> CreateProjectAsync(CreateProjectDto createProjectDto)
+    private readonly TaskManagementDbContex dbContex;
+    private readonly IMapper mapper;
+
+    public ProjectRepository(
+        TaskManagementDbContex dbContex,
+        IMapper mapper)
     {
-        throw new NotImplementedException();
+        this.dbContex = dbContex;
+        this.mapper = mapper;
+    }
+    public async ValueTask<OperationResult> CreateProjectAsync(CreateProjectDto createProjectDto)
+    {
+        var newProject = mapper.Map<Domain.Project.Project>(createProjectDto);
+        dbContex.Projects.Add(newProject);
+        var res = await dbContex.SaveChangesAsync();
+
+        if (res >= 1)
+        {
+            return OperationResult.Success();
+        }
+        else
+        {
+            return OperationResult.Failed("data not saved");
+        }
     }
 
-    public ValueTask<OperationResult> DeleteAsync(int id)
+    public async ValueTask<OperationResult> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var res = await dbContex.Projects
+            .Where(u => u.ID == id)
+            .ExecuteDeleteAsync();
+
+        if (res >= 1)
+        {
+            return OperationResult.Success();
+        }
+        else
+        {
+            return OperationResult.Failed("data not saved");
+        }
     }
 
-    public ValueTask<OperationResult> SelectProjectAsync(int id)
+    public async ValueTask<OperationResult<SelectProjectDto>> SelectProjectAsync(int id)
     {
-        throw new NotImplementedException();
+        var project = await dbContex.Projects
+            .Where(x => x.ID == id)
+            .ProjectTo<SelectProjectDto>(mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync();
+
+        return OperationResult<SelectProjectDto>.Success(data: project);
+
     }
 
-    public ValueTask<OperationResult> SelectProjectsAsync()
+    public async ValueTask<OperationResult<List<SelectProjectDto>>> SelectProjectsAsync()
     {
-        throw new NotImplementedException();
+        var project = await dbContex.Projects
+           .ProjectTo<SelectProjectDto>(mapper.ConfigurationProvider)
+           .ToListAsync();
+
+        return OperationResult<List<SelectProjectDto>>.Success(data: project);
     }
 
-    public ValueTask<OperationResult> UpdateProjectAsync(UpdateProjectDto updateProjectDto)
+    public async ValueTask<OperationResult> UpdateProjectAsync(UpdateProjectDto updateProjectDto)
     {
-        throw new NotImplementedException();
-    }
+        var newProject = mapper.Map<Domain.Project.Project>(updateProjectDto);
 
-    ValueTask<OperationResult<SelectProjectDto>> IProjectRepository.SelectProjectAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
+        var oldUser = dbContex.Projects
+            .FirstOrDefault(x => x.ID == updateProjectDto.ID);
+        if (oldUser is null)
+        {
+            return OperationResult.Failed("user not found");
+        }
 
-    ValueTask<OperationResult<List<SelectProjectDto>>> IProjectRepository.SelectProjectsAsync()
-    {
-        throw new NotImplementedException();
+        dbContex.Projects.Update(newProject);
+
+        var res = await dbContex.SaveChangesAsync();
+
+        if (res >= 1)
+        {
+            return OperationResult.Success();
+        }
+        else
+        {
+            return OperationResult.Failed("data not saved");
+        }
     }
 }

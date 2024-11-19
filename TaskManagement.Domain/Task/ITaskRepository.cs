@@ -3,28 +3,23 @@
 namespace TaskManagement.Domain.Task;
 
 public record CreateTaskDto(
-    int ID,
     string Title,
     DateTime CreationTime,
-    DateTime LastModifiedTime,
     int AssigneeID,
     int ReporterID,
     TaskType TaskType,
     Status Status,
-    List<Comment> TaskComments,
-    Project.Project Project);
+    int ProjectID);
 
 public record UpdateTaskDto(
     int ID,
     string Title,
-    DateTime CreationTime,
     DateTime LastModifiedTime,
     int AssigneeID,
     int ReporterID,
     TaskType TaskType,
     Status Status,
-    List<Comment> TaskComments,
-    Project.Project Project);
+    int ProjectID);
 
 public record SelectTaskDto(
     int ID,
