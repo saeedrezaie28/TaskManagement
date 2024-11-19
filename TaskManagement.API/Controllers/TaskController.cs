@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Domain.Task;
 
 
 namespace TaskManagement.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TaskController : ControllerBase
@@ -51,6 +53,7 @@ namespace TaskManagement.API.Controllers
         }
 
         [HttpDelete("Delete/{id}")]
+        [Authorize(Roles = "admin")]
         public async ValueTask<IActionResult> Delete([FromRoute] int id)
         {
             var res = await taskService.DeleteTask(id);

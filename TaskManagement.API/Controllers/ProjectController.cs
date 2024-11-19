@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Domain.Project;
 using TaskManagement.Infrasturcture.EF.Project;
 
 
 namespace TaskManagement.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectController : ControllerBase
@@ -30,6 +32,7 @@ namespace TaskManagement.API.Controllers
             return Ok(res);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost("Create")]
         public async ValueTask<IActionResult> Create([FromBody] CreateProjectDto createProjectDto)
         {
@@ -37,6 +40,7 @@ namespace TaskManagement.API.Controllers
             return Ok(res);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost("Update")]
         public async ValueTask<IActionResult> Update([FromBody] UpdateProjectDto updateProjectDto)
         {
@@ -44,6 +48,7 @@ namespace TaskManagement.API.Controllers
             return Ok(res);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("Delete/{id}")]
         public async ValueTask<IActionResult> Delete([FromRoute] int id)
         {

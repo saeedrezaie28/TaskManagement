@@ -31,4 +31,8 @@ public class UserService
     {
         return await userRepository.GetUsersAsync();
     }
+    public async ValueTask<OperationResult<SelectUserDto>> Login(string userName, string password)
+    {
+        return await userRepository.Login(userName, password);
+    }
 }

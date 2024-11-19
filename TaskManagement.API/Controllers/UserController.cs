@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Domain.User;
 using TaskManagement.Infrasturcture.EF.User;
 
 
 namespace TaskManagement.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -30,6 +32,7 @@ namespace TaskManagement.API.Controllers
             return Ok(res);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost("Create")]
         public async ValueTask<IActionResult> Create([FromBody] CreateUserDto createUserDto)
         {
@@ -37,6 +40,7 @@ namespace TaskManagement.API.Controllers
             return Ok(res);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost("Update")]
         public async ValueTask<IActionResult> Update([FromBody] UpdateUserDto updateUserDto)
         {
@@ -44,13 +48,12 @@ namespace TaskManagement.API.Controllers
             return Ok(res);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("Delete/{id}")]
         public async ValueTask<IActionResult> Delete([FromRoute] int id)
         {
             var res = await userService.DeleteAsync(id);
             return Ok(res);
         }
-
-
     }
 }

@@ -21,8 +21,10 @@ public record SelectUserDto(
     string Name,
     string LastName,
     string Email,
+    string UserName,
     string Password,
-    string Mobile);
+    string Mobile,
+    List<Role> Roles);
 
 public interface IUserRepository
 {
@@ -31,4 +33,5 @@ public interface IUserRepository
     ValueTask<OperationResult> DeleteAsync(int id);
     ValueTask<OperationResult<List<SelectUserDto>>> GetUsersAsync();
     ValueTask<OperationResult<SelectUserDto>> GetUserAsync(int id);
+    ValueTask<OperationResult<SelectUserDto>> Login(string userName, string password);
 }

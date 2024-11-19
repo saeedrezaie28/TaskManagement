@@ -77,6 +77,22 @@ public class UserRepository : IUserRepository
         }
     }
 
+    public async ValueTask<OperationResult<SelectUserDto>> Login(string userName, string password)
+    {
+        var user = await dbContex.Users
+            .Where(x => x.UserName == userName && password == x.Password)
+            .FirstOrDefaultAsync();
+        if (user != null)
+        {
+            var userDto = mapper.Map<SelectUserDto>(user);
+            return OperationResult<SelectUserDto>.Success(userDto);
+        }
+        else
+        {
+            return OperationResult<SelectUserDto>.Failed("user not found");
+        }
+    }
+
     public async ValueTask<OperationResult> UpdateAsync(UpdateUserDto user)
     {
         var newUser = mapper.Map<Domain.User.User>(user);
