@@ -2,7 +2,6 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using TaskManagement.Domain.Shared;
-using TaskManagement.Domain.User;
 using TaskManagement.Infrasturcture.EF;
 
 namespace TaskManagement.Domain.Task;

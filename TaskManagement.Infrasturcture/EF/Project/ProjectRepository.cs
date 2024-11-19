@@ -1,9 +1,6 @@
-﻿
-using TaskManagement.Infrasturcture.EF.Project;
-using TaskManagement.Domain.Shared;
+﻿using TaskManagement.Domain.Shared;
 using TaskManagement.Domain.Project;
 using AutoMapper;
-using TaskManagement.Domain.User;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper.QueryableExtensions;
 

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Domain.Project;
-using TaskManagement.Domain.User;
 using TaskManagement.Infrasturcture.EF.Project;
-using TaskManagement.Infrasturcture.EF.User;
 
 
 namespace TaskManagement.API.Controllers

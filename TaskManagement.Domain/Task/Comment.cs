@@ -1,6 +1,4 @@
-﻿using TaskManagement.Domain.Shared;
-
-namespace TaskManagement.Domain.Task;
+﻿namespace TaskManagement.Domain.Task;
 
 public class Comment
 {

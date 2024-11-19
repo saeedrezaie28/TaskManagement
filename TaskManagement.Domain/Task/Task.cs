@@ -1,6 +1,4 @@
-﻿using System.Security.Principal;
-using TaskManagement.Domain.Shared;
-using TaskManagement.Domain.User;
+﻿using TaskManagement.Domain.Shared;
 
 namespace TaskManagement.Domain.Task;
 
@@ -9,7 +7,7 @@ public class Task
     public int ID { get; set; }
     public string Title { get; set; }
     public DateTime CreationTime { get; set; }
-    public DateTime LastModifiedTime { get; set; }
+    public DateTime? LastModifiedTime { get; set; }
     public int AssigneeID { get; set; }
     public User.User Assignee { get; set; }
     public int ReporterID { get; set; }

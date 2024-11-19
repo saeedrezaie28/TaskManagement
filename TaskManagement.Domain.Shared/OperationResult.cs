@@ -33,6 +33,6 @@ public class OperationResult<T> : OperationResult
 
     public static OperationResult<T> Success(T data, string message = default)
         => new OperationResult<T>(isSuccess: true, message: message, data: data);
-    public static OperationResult<T> Failed(string message, string catchMessage)
+    public static OperationResult<T> Failed(string message = "", string catchMessage = "")
         => new OperationResult<T>(isSuccess: false, message: message, catchMessage: catchMessage);
 }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using TaskManagement.Domain.Project;
 using TaskManagement.Domain.Task;
-using TaskManagement.Domain.User;
 
 namespace TaskManagement.Infrasturcture.EF
 {
@@ -36,6 +34,10 @@ namespace TaskManagement.Infrasturcture.EF
                 .WithMany()
                 .HasForeignKey(t => t.ReporterID)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Domain.Task.Task>()
+                .Property(x => x.LastModifiedTime)
+                .IsRequired(false);
         }
     }
 
