@@ -23,7 +23,7 @@ public class OperationResult<T> : OperationResult
 {
     public T Data { get; set; }
 
-    private OperationResult(bool isSuccess = default, string message = default, string catchMessage = default, T data = default)
+    protected OperationResult(bool isSuccess = default, string message = default, string catchMessage = default, T data = default)
     {
         IsSuccess = isSuccess;
         Message = message;
@@ -35,4 +35,40 @@ public class OperationResult<T> : OperationResult
         => new OperationResult<T>(isSuccess: true, message: message, data: data);
     public static OperationResult<T> Failed(string message = "", string catchMessage = "")
         => new OperationResult<T>(isSuccess: false, message: message, catchMessage: catchMessage);
+}
+public class PaginationOperationResult<T> : OperationResult<T>
+{
+    public int OutCount { get; set; }
+    public int Page { get; set; }
+    public int PerPage { get; set; }
+
+    private PaginationOperationResult(
+        int outCount = 0,
+        int page = 0,
+        int perPage = 0,
+        bool isSuccess = default,
+        string message = default,
+        string catchMessage = default,
+        T data = default)
+    {
+        IsSuccess = isSuccess;
+        Message = message;
+        CatchMessage = catchMessage;
+        Data = data;
+        OutCount = outCount;
+        Page = page;
+        PerPage = perPage;
+    }
+
+    public static PaginationOperationResult<T> Success(T data, int outCount, string message = default)
+        => new PaginationOperationResult<T>(
+            outCount: outCount,
+            isSuccess: true,
+            message: message,
+            data: data);
+    public static PaginationOperationResult<T> Failed(string message = "", string catchMessage = "")
+        => new PaginationOperationResult<T>(
+            isSuccess: false,
+            message: message,
+            catchMessage: catchMessage);
 }

@@ -77,6 +77,16 @@ public class UserRepository : IUserRepository
         }
     }
 
+    public ValueTask<PaginationOperationResult<List<SelectUserDto>>> GetUsersAsync(int page, int perPage)
+    {
+        throw new NotImplementedException();
+    }
+
+    public ValueTask<PaginationOperationResult<List<SelectUserDto>>> GetUsersAsync(GetUsersParamsDto param)
+    {
+        throw new NotImplementedException();
+    }
+
     public async ValueTask<OperationResult<SelectUserDto>> Login(string userName, string password)
     {
         var user = await dbContex.Users

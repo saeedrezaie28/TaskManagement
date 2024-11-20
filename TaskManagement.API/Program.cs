@@ -7,6 +7,7 @@ using TaskManagement.Application.Auth;
 using TaskManagement.Domain.Project;
 using TaskManagement.Domain.Task;
 using TaskManagement.Domain.User;
+using TaskManagement.Infrasturcture.Dapper.Generic;
 using TaskManagement.Infrasturcture.EF;
 using TaskManagement.Infrasturcture.EF.Project;
 using TaskManagement.Infrasturcture.EF.Task;
@@ -55,17 +56,24 @@ builder.Services.AddDbContext<TaskManagementDbContex>(options =>
     options.UseSqlServer(config["cs"]);
 });
 
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+//builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, TaskManagement.Infrasturcture.Dapper.User.UserRepository>();
+
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 //builder.Services.AddScoped<ITaskRepository, TaskManagement.Infrasturcture.Dapper.Task.TaskRepository>();
+
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 
 builder.Services.AddScoped<ProjectService, ProjectService>();
 builder.Services.AddScoped<CommentService, CommentService>();
 builder.Services.AddScoped<TaskService, TaskService>();
+
 builder.Services.AddScoped<UserService, UserService>();
 
+
+builder.Services.AddScoped<IGeneric, Generic>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
 

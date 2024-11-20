@@ -31,6 +31,15 @@ public class UserService
     {
         return await userRepository.GetUsersAsync();
     }
+    public async ValueTask<PaginationOperationResult<List<SelectUserDto>>> GetUsersAsync(int page, int perPage)
+    {
+        var param = new GetUsersParamsDto()
+        {
+            Page = page,
+            PerPage = perPage
+        };
+        return await userRepository.GetUsersAsync(param);
+    }
     public async ValueTask<OperationResult<SelectUserDto>> Login(string userName, string password)
     {
         return await userRepository.Login(userName, password);

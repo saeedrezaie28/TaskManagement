@@ -44,7 +44,7 @@ namespace TaskManagement.Application.Auth
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(30),
+                Expires = DateTime.UtcNow.AddYears(300),
                 Issuer = config["JwtSettings:Issuer"],
                 Audience = config["JwtSettings:Audience"],
                 SigningCredentials = credentials

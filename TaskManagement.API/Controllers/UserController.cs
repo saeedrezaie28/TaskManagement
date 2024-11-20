@@ -25,6 +25,13 @@ namespace TaskManagement.API.Controllers
             return Ok(res);
         }
 
+        [HttpGet("GetUsers_WithSummery")]
+        public async ValueTask<IActionResult> GetUsers(int page, int perPage)
+        {
+            var res = await userService.GetUsersAsync(page, perPage);
+            return Ok(res);
+        }
+
         [HttpGet("GetUser/{id}")]
         public async ValueTask<IActionResult> GetUsers([FromRoute] int id)
         {
