@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Security.Claims;
 using System.Text;
 using TaskManagement.Application.Auth;
 using TaskManagement.Domain.Project;
@@ -94,6 +95,15 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSettings:SecretKey"]))
     };
 });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy =>
+    {
+        policy.RequireClaim(ClaimTypes.Role, "admin");
+    });
+});
+
 
 var app = builder.Build();
 

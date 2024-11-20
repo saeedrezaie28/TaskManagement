@@ -32,7 +32,7 @@ namespace TaskManagement.API.Controllers
             return Ok(res);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Policy = "Admin")]
         [HttpPost("Create")]
         public async ValueTask<IActionResult> Create([FromBody] CreateProjectDto createProjectDto)
         {
