@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Security.Claims;
 using System.Text;
+using TaskManagement.API.Middelware;
 using TaskManagement.Application.Auth;
 using TaskManagement.Domain.Project;
 using TaskManagement.Domain.Task;
@@ -77,6 +78,7 @@ builder.Services.AddScoped<UserService, UserService>();
 builder.Services.AddScoped<IGeneric, Generic>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
+builder.Services.AddScoped<ExecptionHandlerMiddelware>();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -116,8 +118,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<ExecptionHandlerMiddelware>();
 
 app.MapControllers();
 
