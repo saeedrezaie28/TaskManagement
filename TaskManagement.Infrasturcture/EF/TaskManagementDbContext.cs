@@ -4,14 +4,14 @@ using TaskManagement.Domain.Task;
 
 namespace TaskManagement.Infrasturcture.EF
 {
-    public class TaskManagementDbContex : DbContext
+    public class TaskManagementDbContext : DbContext
     {
         public DbSet<Domain.User.User> Users { get; set; }
         public DbSet<Domain.Task.Task> Tasks { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Domain.Project.Project> Projects { get; set; }
 
-        public TaskManagementDbContex(
+        public TaskManagementDbContext(
             DbContextOptions options) : base(options)
         {
         }
@@ -41,14 +41,14 @@ namespace TaskManagement.Infrasturcture.EF
         }
     }
 
-    public class TaskManagementDbContextFactory : IDesignTimeDbContextFactory<TaskManagementDbContex>
+    public class TaskManagementDbContextFactory : IDesignTimeDbContextFactory<TaskManagementDbContext>
     {
-        public TaskManagementDbContex CreateDbContext(string[] args)
+        public TaskManagementDbContext CreateDbContext(string[] args)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<TaskManagementDbContex>();
+            var optionsBuilder = new DbContextOptionsBuilder<TaskManagementDbContext>();
             optionsBuilder.UseSqlServer("Server=.;Database=TaskManagement;Trusted_Connection=True;TrustServerCertificate=True;");
 
-            return new TaskManagementDbContex(optionsBuilder.Options);
+            return new TaskManagementDbContext(optionsBuilder.Options);
         }
     }
 

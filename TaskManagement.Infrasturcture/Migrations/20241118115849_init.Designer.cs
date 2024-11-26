@@ -11,7 +11,7 @@ using TaskManagement.Infrasturcture.EF;
 
 namespace TaskManagement.Infrasturcture.Migrations
 {
-    [DbContext(typeof(TaskManagementDbContex))]
+    [DbContext(typeof(TaskManagementDbContext))]
     [Migration("20241118115849_init")]
     partial class init
     {

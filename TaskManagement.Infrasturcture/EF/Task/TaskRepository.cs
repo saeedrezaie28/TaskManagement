@@ -8,11 +8,11 @@ namespace TaskManagement.Domain.Task;
 
 public class TaskRepository : ITaskRepository
 {
-    private readonly TaskManagementDbContex dbContex;
+    private readonly TaskManagementDbContext dbContex;
     private readonly IMapper mapper;
 
     public TaskRepository(
-        TaskManagementDbContex dbContex,
+        TaskManagementDbContext dbContex,
         IMapper mapper)
     {
         this.dbContex = dbContex;

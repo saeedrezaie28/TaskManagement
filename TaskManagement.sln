@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.API", "TaskManagement.API\TaskManagement.API.csproj", "{BB7781EA-719E-4EA6-B5C9-9C840947C7C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.API", "TaskManagement.API\TaskManagement.API.csproj", "{BB7781EA-719E-4EA6-B5C9-9C840947C7C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Domain", "TaskManagement.Domain\TaskManagement.Domain.csproj", "{89F4DA5A-B692-4B5D-955F-FB321F31ACC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Domain", "TaskManagement.Domain\TaskManagement.Domain.csproj", "{89F4DA5A-B692-4B5D-955F-FB321F31ACC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Infrasturcture", "TaskManagement.Infrasturcture\TaskManagement.Infrasturcture.csproj", "{4F421FF3-5C56-41D0-B0A1-0634D600970C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Infrasturcture", "TaskManagement.Infrasturcture\TaskManagement.Infrasturcture.csproj", "{4F421FF3-5C56-41D0-B0A1-0634D600970C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Application", "TaskManagement.Application\TaskManagement.Application.csproj", "{6441FE43-3137-4B47-A7A4-DA0B7B154017}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Application", "TaskManagement.Application\TaskManagement.Application.csproj", "{6441FE43-3137-4B47-A7A4-DA0B7B154017}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Domain.Shared", "TaskManagement.Domain.Shared\TaskManagement.Domain.Shared.csproj", "{64AA196F-27D6-47C3-9CE4-41B483767A8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Domain.Shared", "TaskManagement.Domain.Shared\TaskManagement.Domain.Shared.csproj", "{64AA196F-27D6-47C3-9CE4-41B483767A8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8BE80978-370E-4F8F-BE21-61D474FE21E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Infrasturcture.Test", "TaskManagement.Domain.Test\TaskManagement.Infrasturcture.Test.csproj", "{38D7E73A-BE30-4CE1-9C5F-1835E72263F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +43,16 @@ Global
 		{64AA196F-27D6-47C3-9CE4-41B483767A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64AA196F-27D6-47C3-9CE4-41B483767A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64AA196F-27D6-47C3-9CE4-41B483767A8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D7E73A-BE30-4CE1-9C5F-1835E72263F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D7E73A-BE30-4CE1-9C5F-1835E72263F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D7E73A-BE30-4CE1-9C5F-1835E72263F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D7E73A-BE30-4CE1-9C5F-1835E72263F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38D7E73A-BE30-4CE1-9C5F-1835E72263F2} = {8BE80978-370E-4F8F-BE21-61D474FE21E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {142CD5A4-38B9-4D32-A88B-56E1A913AA9E}

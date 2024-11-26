@@ -8,11 +8,11 @@ namespace TaskManagement.Infrasturcture.EF.Project;
 
 public class ProjectRepository : IProjectRepository
 {
-    private readonly TaskManagementDbContex dbContex;
+    private readonly TaskManagementDbContext dbContex;
     private readonly IMapper mapper;
 
     public ProjectRepository(
-        TaskManagementDbContex dbContex,
+        TaskManagementDbContext dbContex,
         IMapper mapper)
     {
         this.dbContex = dbContex;

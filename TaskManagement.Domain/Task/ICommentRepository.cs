@@ -1,4 +1,5 @@
-﻿using TaskManagement.Domain.Shared;
+﻿using System.Collections.Immutable;
+using TaskManagement.Domain.Shared;
 
 namespace TaskManagement.Domain.Task;
 
@@ -26,7 +27,7 @@ public record UpdateCommentDto(
     User.User Reporter,
     TaskType TaskType,
     Status Status,
-    List<Comment> TaskComments);
+    ImmutableList<Comment> TaskComments);
 
 public interface ICommentRepository
 {

@@ -8,11 +8,11 @@ namespace TaskManagement.Infrasturcture.EF.User;
 
 public class UserRepository : IUserRepository
 {
-    private readonly TaskManagementDbContex dbContex;
+    private readonly TaskManagementDbContext dbContex;
     private readonly IMapper mapper;
 
     public UserRepository(
-        TaskManagementDbContex dbContex,
+        TaskManagementDbContext dbContex,
         IMapper mapper)
     {
         this.dbContex = dbContex;

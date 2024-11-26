@@ -53,7 +53,7 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddDbContext<TaskManagementDbContex>(options =>
+builder.Services.AddDbContext<TaskManagementDbContext>(options =>
 {
     options.UseSqlServer(config["cs"]);
 });
